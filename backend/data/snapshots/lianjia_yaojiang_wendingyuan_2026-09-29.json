@@ -1,0 +1,26 @@
+{
+  "community_id": "36b7034ec60e4fb381561aff6d1c2e20",
+  "source": "lianjia_public",
+  "source_url": "https://news.lianjia.com/hz/xiaoqu/1811043641525.html",
+  "observed_at": "2026-09-29T00:00:00+08:00",
+  "review_note": "链家公开小区分析页可见推荐房源样本；作为公开挂牌参考，不代表链家全部在售房源，也不代表成交记录。",
+  "records": [
+    {
+      "external_id": "lianjia-yaojiang-wendingyuan-recommend-9297-410",
+      "observation_type": "listing",
+      "observed_at": "2026-09-29T00:00:00+08:00",
+      "total_price": "410",
+      "unit_price": "44101",
+      "area_sqm": "92.97",
+      "bedrooms": "2",
+      "source_url": "https://news.lianjia.com/hz/xiaoqu/1811043641525.html",
+      "confidence": "low",
+      "payload": {
+        "title": "耀江文鼎苑 2室2厅二手房",
+        "source_kind": "public_search_snapshot",
+        "price_unit": "万",
+        "note": "页面推荐房源，页面未提供可复核的独立房源编号"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>居住决策工作台</title>
+    <link rel="stylesheet" href="./styles.css?v=20260929-2" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">居</span><span>居住决策工作台</span></div>
+      <div class="topbar-meta">杭州 · 西湖区 <span class="status-dot"></span> 数据只读预览</div>
+    </header>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">MVP / 社区研究</p>
+          <h1>先把证据看清楚，<br /><em>再决定要不要看房。</em></h1>
+          <p class="hero-copy">从小区身份、数据来源和缺口开始，逐步建立可追溯的购房判断。</p>
+        </div>
+        <div class="hero-note"><span class="note-icon">◌</span><div><strong>当前数据边界</strong><br />未经核验的数据不会被包装成推荐。</div></div>
+      </section>
+
+      <section class="summary-grid" id="summary"></section>
+
+      <section class="content-grid">
+        <div class="panel community-panel">
+          <div class="panel-heading"><div><p class="eyebrow">COMMUNITIES</p><h2>小区观察池</h2></div><span class="count-pill" id="community-count"></span></div>
+          <label class="search"><span>⌕</span><input id="search" placeholder="搜索小区名称" /></label>
+          <div id="community-list" class="community-list"></div>
+        </div>
+        <div class="panel detail-panel" id="detail"></div>
+      </section>
+    </main>
+    <footer>数据来源与更新时间以后台记录为准 · 当前为初版只读界面</footer>
+    <script src="./runtime-config.js"></script>
+    <script src="./app.js?v=20260929-2" type="module"></script>
+  </body>
+</html>

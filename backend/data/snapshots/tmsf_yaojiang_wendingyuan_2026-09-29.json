@@ -1,0 +1,65 @@
+{
+  "community_id": "36b7034ec60e4fb381561aff6d1c2e20",
+  "source": "tmsf_public",
+  "source_url": "https://www.tmsf.com/esf/xq_index_10003660.htm",
+  "observed_at": "2026-09-29T18:30:00+08:00",
+  "capture_method": "normal_browser_rendered_public_page",
+  "scope_note": "小区详情页显示挂牌房源数175套；本快照仅保存页面出售房源区当时直接展示的4张卡片，不代表完整175套。",
+  "community_summary": {
+    "external_id": "10003660",
+    "displayed_listing_count": 175,
+    "signed_count_30d": 8,
+    "completed_year": 2007,
+    "address": "西湖古墩路565号"
+  },
+  "records": [
+    {
+      "external_id": "70314137",
+      "observation_type": "listing",
+      "observed_at": "2026-09-29T18:30:00+08:00",
+      "total_price": "1350",
+      "unit_price": "87125",
+      "area_sqm": "154.95",
+      "bedrooms": 3,
+      "source_url": "https://www.tmsf.com/esf/xq_csUpgrade_70314137.htm",
+      "confidence": "medium",
+      "payload": {"title": "耀江文鼎苑 全明东边套，客厅可以看得到景观湖 采光视野非常好", "listing_status": "observed", "verified_tag_visible": true, "parser": "tmsf_public_v1"}
+    },
+    {
+      "external_id": "70192653",
+      "observation_type": "listing",
+      "observed_at": "2026-09-29T18:30:00+08:00",
+      "total_price": "696",
+      "unit_price": "77497",
+      "area_sqm": "89.81",
+      "bedrooms": 2,
+      "source_url": "https://www.tmsf.com/esf/xq_csUpgrade_70192653.htm",
+      "confidence": "medium",
+      "payload": {"title": "新上房源 户型结构正气 小区配套齐全", "listing_status": "observed", "verified_tag_visible": true, "parser": "tmsf_public_v1"}
+    },
+    {
+      "external_id": "70195429",
+      "observation_type": "listing",
+      "observed_at": "2026-09-29T18:30:00+08:00",
+      "total_price": "888",
+      "unit_price": "68561",
+      "area_sqm": "129.52",
+      "bedrooms": 3,
+      "source_url": "https://www.tmsf.com/esf/xq_csUpgrade_70195429.htm",
+      "confidence": "medium",
+      "payload": {"title": "耀江文鼎苑 一期大三房 三开间朝南 南北通透景观房", "listing_status": "observed", "verified_tag_visible": true, "parser": "tmsf_public_v1"}
+    },
+    {
+      "external_id": "60095701",
+      "observation_type": "listing",
+      "observed_at": "2026-09-29T18:30:00+08:00",
+      "total_price": "1380",
+      "unit_price": "83768",
+      "area_sqm": "164.74",
+      "bedrooms": 4,
+      "source_url": "https://www.tmsf.com/esf/xq_csUpgrade_60095701.htm",
+      "confidence": "medium",
+      "payload": {"title": "文鼎苑东边套全明户型，小区景观好视野佳", "listing_status": "observed", "verified_tag_visible": true, "parser": "tmsf_public_v1"}
+    }
+  ]
+}
