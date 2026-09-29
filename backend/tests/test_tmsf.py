@@ -1,9 +1,10 @@
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from house_analysis.collectors.hangzhou_official import parse_listing_payload
-from house_analysis.collectors.tmsf import TmsfAccessBlocked, parse_community_detail, parse_saved_html
+from house_analysis.collectors.tmsf import TmsfAccessBlocked, parse_community_detail, parse_community_index, parse_saved_html, search_communities
 
 
 DETAIL_HTML = """
@@ -31,6 +32,20 @@ DETAIL_HTML = """
 
 
 class TmsfCollectorTest(unittest.TestCase):
+    def test_public_index_search_ranks_exact_match_and_exposes_counts(self) -> None:
+        index = parse_community_index(
+            'var data_newCommunitylist = ['
+            '{"communityname":"文新颐景园","communityabb":"颐景园","areaname":"古墩","arearmk":"西湖 古墩","signnum":2,"gpnum":50,"czcount":0,"communityid":10003154},'
+            '{"communityname":"三墩颐景园","communityabb":"三墩颐景园","areaname":"三墩","arearmk":"西湖 三墩","signnum":0,"gpnum":61,"czcount":5,"communityid":10003641}'
+            '];'
+        )
+        with patch("house_analysis.collectors.tmsf.fetch_community_index", return_value=index):
+            results = search_communities("三墩颐景园")
+        self.assertEqual(results[0]["id"], "tmsf:10003641")
+        self.assertEqual(results[0]["listing_count"], 61)
+        self.assertEqual(results[0]["rent_count"], 5)
+        self.assertEqual(results[0]["source_url"], "https://www.tmsf.com/esf/xq_index_10003641.htm")
+
     def test_parses_only_current_listing_cards(self) -> None:
         records = parse_community_detail(
             "https://www.tmsf.com/esf/xq_index_10003660.htm",

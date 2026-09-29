@@ -4,11 +4,12 @@ import os
 from datetime import datetime, timezone
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import select
 
 from .config import database_url
+from .collectors.tmsf import search_communities as search_tmsf_communities
 from .db import create_database_engine, session_scope
 from .models import AdministrativeArea, Community, DataSource, MarketArea, MarketObservation
 from .quality import build_community_quality_report
@@ -65,6 +66,49 @@ def list_communities() -> list[dict[str, Any]]:
             return [_payload(session, c) for c in session.scalars(select(Community).order_by(Community.standard_name)).all()]
     finally:
         engine.dispose()
+
+
+@app.get("/api/v1/community-search")
+@app.get("/api/community-search")
+def search_communities(
+    q: str = Query(min_length=2, max_length=50),
+    limit: int = Query(default=20, ge=1, le=50),
+) -> dict[str, Any]:
+    """Search the local observation pool and TMSF's public Hangzhou index."""
+    keyword = q.strip()
+    engine = create_database_engine(database_url())
+    try:
+        with session_scope(engine) as session:
+            local = [
+                {**_payload(session, community), "scope": "local"}
+                for community in session.scalars(
+                    select(Community)
+                    .where(Community.standard_name.contains(keyword))
+                    .order_by(Community.standard_name)
+                    .limit(limit)
+                ).all()
+            ]
+    finally:
+        engine.dispose()
+
+    try:
+        external = search_tmsf_communities(keyword, limit=limit)
+        external_status = "succeeded"
+        external_message = None
+    except Exception as exc:
+        external = []
+        external_status = "unavailable"
+        external_message = str(exc)
+
+    local_names = {item["standard_name"] for item in local}
+    merged = local + [item for item in external if item.get("standard_name") not in local_names]
+    return {
+        "query": keyword,
+        "results": merged[:limit],
+        "counts": {"local": len(local), "external": len(external)},
+        "external_status": external_status,
+        "external_message": external_message,
+    }
 
 
 @app.get("/api/v1/communities/{community_id}")
